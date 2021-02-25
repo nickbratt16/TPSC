@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+
+    <div th:fragment="style">
+        <link th:href="@{style.css}" rel="stylesheet">
+    </div>
+</head>
+<body>
+    <div th:fragment="style">
+        <h3 id="headText">Judge the fight in your hands</h3>
+    </div>
+</body>
+</html>
