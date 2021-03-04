@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
     <title>The Peoples Score Card</title>
 
-    <link href="">
 </head>
 <body>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
 
-    <h1>Welcome to The People's Score Card</h1>
-    <br>
-
+    <br><br>
     <span th:text="${currentDate}"></span>
-    <br>
-    <span th:text="${User}"></span>
+
+    <br><br>
+    <div th:replace="fragments/base :: footer"></div>
 </body>
+
+<th:block th:replace="fragments/base :: scripts"></th:block>
 </html>

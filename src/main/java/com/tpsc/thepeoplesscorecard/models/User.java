@@ -8,6 +8,10 @@ public class User {
     private int age;
     private String favFighter;
 
+    public User() {
+
+    }
+
     public String getFirstName() {
         return firstName;
     }
