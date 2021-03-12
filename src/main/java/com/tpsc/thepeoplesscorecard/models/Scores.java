@@ -1,7 +1,15 @@
 package com.tpsc.thepeoplesscorecard.models;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+@Entity
 public class Scores {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
     private String fighter1;
     private String fighter2;
     private int round1Score1;
@@ -12,6 +20,9 @@ public class Scores {
     private int round3Score2;
     private int total1;
     private int total2;
+
+    private LocalDateTime created;
+    private LocalDateTime modified;
 
     public Scores() {    }
 
@@ -51,4 +62,22 @@ public class Scores {
 
     public int getTotal2() { return getRound1Score2() + getRound2Score2() + getRound3Score2(); }
 
+    public LocalDateTime getCreated() { return created; }
+
+    public void setCreated(LocalDateTime created) { this.created = created; }
+
+    public LocalDateTime getModified() { return modified; }
+
+    public void setModified(LocalDateTime modified) { this.modified = modified; }
+
+    @PrePersist
+    public void onCreate() {
+        this.setCreated(LocalDateTime.now());
+        this.setModified(LocalDateTime.now());
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.setModified(LocalDateTime.now());
+    }
 }
