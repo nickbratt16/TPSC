@@ -1,7 +1,10 @@
 package com.tpsc.thepeoplesscorecard.models;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,14 +13,39 @@ public class Scores {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
+    @NotBlank(message = "Fighter #1 is required")
+    @Size(min = 2, message = "Fighter #1 must have a name more than 2 characters")
     private String fighter1;
+
+    @NotBlank(message = "Fighter #2 is required")
+    @Size(min = 2, message = "Fighter #2 must have a name more than 2 characters")
     private String fighter2;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round1Score1;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round1Score2;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round2Score1;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round2Score2;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round3Score1;
+
+    @Min(value = 8, message = "Minimum score is 8")
+    @Max(value = 10, message = "Max score is 10")
     private int round3Score2;
+
     private int total1;
     private int total2;
 
@@ -61,6 +89,12 @@ public class Scores {
     public int getTotal1() { return getRound1Score1() + getRound2Score1() + getRound3Score1(); }
 
     public int getTotal2() { return getRound1Score2() + getRound2Score2() + getRound3Score2(); }
+
+    @Override
+    public String toString() {
+        return  this.fighter1 + " " + this.total1 + " " +
+                this.fighter2 + " " + this.total2;
+    }
 
     public LocalDateTime getCreated() { return created; }
 

@@ -13,21 +13,37 @@
 
     <form class="mt-5" th:action="@{/scores}" th:object="${scores}" method="post">
         <div class="container-fluid">
-            <div class="row justify-content-center mb-3">
+            <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <p>Fighter 1:</p>
                     <input class="form-control" id="fighter1" type="text"
-                           th:field="*{fighter1}" placeholder="Fighter One"/>
+                           th:field="*{fighter1}" placeholder="Fighter One" required/>
                 </div>
             </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('fighter1')}"
+                          th:errors="*{fighter1}">
+                    </span>
+                </div>
+            </div>
+
             <div class="row justify-content-center mb-3">
                 <div class="col-8 col-md-3">
                     <p>Fighter 2:</p>
                     <input class="form-control" id="fighter2" type="text"
-                           th:field="*{fighter2}" placeholder="Fighter Two"/>
+                           th:field="*{fighter2}" placeholder="Fighter Two" required/>
                 </div>
             </div>
             <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('fighter2')}"
+                          th:errors="*{fighter2}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <p>Fighter 1 - Round 1:</p>
                     <input class="form-control" id="round1Score1" type="number"
@@ -36,12 +52,28 @@
             </div>
             <div class="row justify-content-center mb-3">
                 <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round1Score1')}"
+                          th:errors="*{round1Score1}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3">
                     <p>Fighter 2 - Round 1:</p>
                     <input class="form-control" id="round1Score2" type="number"
                            th:field="*{round1Score2}" min="8" max="10" placeholder="10 / 9 / 8"/>
                 </div>
             </div>
             <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round1Score2')}"
+                          th:errors="*{round1Score2}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <p>Fighter 1 - Round 2:</p>
                     <input class="form-control" id="round2Score1" type="number"
@@ -50,12 +82,28 @@
             </div>
             <div class="row justify-content-center mb-3">
                 <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round2Score1')}"
+                          th:errors="*{round2Score1}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3">
                     <p>Fighter 2 - Round 2:</p>
                     <input class="form-control" id="round2Score2" type="number"
                            th:field="*{round2Score2}" min="8" max="10" placeholder="10 / 9 / 8"/>
                 </div>
             </div>
             <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round2Score2')}"
+                          th:errors="*{round2Score2}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <p>Fighter 1 - Round 3:</p>
                     <input class="form-control" id="round3Score1" type="number"
@@ -64,11 +112,27 @@
             </div>
             <div class="row justify-content-center mb-3">
                 <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round3Score1')}"
+                          th:errors="*{round3Score1}">
+                    </span>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
                     <p>Fighter 2 - Round 3:</p>
                     <input class="form-control" id="round3Score2" type="number"
                            th:field="*{round3Score2}" min="8" max="10" placeholder="10 / 9 / 8"/>
                 </div>
             </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span class="text-danger small" th:if="${#fields.hasErrors('round3Score2')}"
+                          th:errors="*{round3Score2}">
+                    </span>
+                </div>
+            </div>
+
             <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <input class="btn btn-light btn-outline-dark" type="submit"
