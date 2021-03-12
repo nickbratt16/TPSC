@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="fragments/base :: headerFiles"></th:block>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+</head>
+<body>
+
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
+
+    <form class="mt-5" th:action="@{/scores}" th:object="${scores}" method="post">
+        <div class="container-fluid">
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="fighter1" type="text"
+                           th:field="*{fighter1}" placeholder="Fighter One"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="fighter2" type="text"
+                           th:field="*{fighter2}" placeholder="Fighter Two"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round1Score1" type="number"
+                           th:field="*{round1Score1}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round1Score2" type="number"
+                           th:field="*{round1Score2}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round2Score1" type="number"
+                           th:field="*{round2Score1}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round2Score2" type="number"
+                           th:field="*{round2Score2}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round3Score1" type="number"
+                           th:field="*{round3Score1}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="round3Score2" type="number"
+                           th:field="*{round3Score2}" placeholder="10 / 9 / 8"/>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3">
+                    <input class="btn btn-light btn-outline-dark" type="submit"
+                           value="Submit">
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+
+
+
+
+
+
+    <br><br>
+    <div th:replace="fragments/base :: footer"></div>
+</body>
+
+<th:block th:replace="fragments/base :: scripts"></th:block>
+</html>

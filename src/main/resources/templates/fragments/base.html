@@ -28,6 +28,9 @@
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/user}">Add User</a>
                 </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scores' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/scores}">Start Scoring</a>
+                </li>
             </ul>
         </div>
     </nav>
