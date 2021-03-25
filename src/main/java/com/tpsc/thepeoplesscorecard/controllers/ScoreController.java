@@ -3,6 +3,7 @@ package com.tpsc.thepeoplesscorecard.controllers;
 import com.tpsc.thepeoplesscorecard.data.ScoreRepository;
 import com.tpsc.thepeoplesscorecard.models.Scores;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -37,7 +38,13 @@ public class ScoreController {
         if (errors.hasErrors())
             return "score_sheet";
 
+        //try {
+
         this.scoreRepo.save(scores);
+
+        //} catch (DataIntegrityViolationException e) {
+            //errors.rejectValue();
+        //}
 
         return "redirect:/scoreDisplay";
     }
