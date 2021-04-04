@@ -52,7 +52,10 @@ public class Scores {
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    public Scores() {    }
+    public Scores() {
+        getTotal1();
+        getTotal2();
+    }
 
     public String getFighter1() { return fighter1; }
 
@@ -92,8 +95,7 @@ public class Scores {
 
     @Override
     public String toString() {
-        return  this.fighter1 + " " + this.total1 + " " +
-                this.fighter2 + " " + this.total2;
+        return  this.fighter1 + " vs. " + this.fighter2;
     }
 
     public LocalDateTime getCreated() { return created; }
