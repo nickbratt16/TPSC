@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/scores")
@@ -23,11 +24,15 @@ public class ScoreController {
 
     @Autowired
     public ScoreController(ScoreRepository scoreRepo) {
+
         this.scoreRepo = scoreRepo;
     }
 
     @GetMapping
     public String showScores(Model model) {
+        /*List<Scores> scores = (List<Scores>) this.scoreRepo.findAll();
+        model.addAttribute("scores", scores);*/
+
         model.addAttribute("scores", new Scores());
 
         return "score_sheet";

@@ -46,15 +46,20 @@ public class Scores {
     @Max(value = 10, message = "Max score is 10")
     private int round3Score2;
 
-    private int total1;
-    private int total2;
+    private int total1 = round1Score1 + round2Score1 + round3Score1;
+    private int total2 = round1Score2 + round2Score2 + round3Score2;
 
     private LocalDateTime created;
     private LocalDateTime modified;
 
     public Scores() {
-        getTotal1();
-        getTotal2();
+        this.fighter1 = "";
+        this.fighter2 = "";
+    }
+
+    public Scores(String fighter1, String fighter2) {
+        this.fighter1 = fighter1;
+        this.fighter2 = fighter2;
     }
 
     public String getFighter1() { return fighter1; }
@@ -89,9 +94,13 @@ public class Scores {
 
     public void setRound3Score2(int round3Score2) { this.round3Score2 = round3Score2; }
 
-    public int getTotal1() { return getRound1Score1() + getRound2Score1() + getRound3Score1(); }
+    public int getTotal1() { return total1; }
 
-    public int getTotal2() { return getRound1Score2() + getRound2Score2() + getRound3Score2(); }
+    public void setTotal1(int total1) { this.total1 = total1; }
+
+    public int getTotal2() { return total2; }
+
+    public void setTotal2(int total2) { this.total2 = total2; }
 
     @Override
     public String toString() {
