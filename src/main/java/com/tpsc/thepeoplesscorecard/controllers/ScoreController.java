@@ -57,7 +57,8 @@ public class ScoreController {
             return "view_score";
 
         Scores originalScore = this.scoreRepo.findById(id).get();
-        this.scoreRepo.save(scores);
+        updateOriginalScore(originalScore, scores);
+        this.scoreRepo.save(originalScore);
 
         return "redirect:/scoreDisplay";
     }
@@ -73,5 +74,11 @@ public class ScoreController {
         original.setRound3Score2(update.getRound3Score2());
         original.setTotal1(update.getTotal1());
         original.setTotal2(update.getTotal2());
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteScore(@PathVariable Long id) {
+        this.scoreRepo.deleteById(id);
+        return "redirect:/scoreDisplay";
     }
 }

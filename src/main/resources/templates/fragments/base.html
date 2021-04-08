@@ -33,6 +33,9 @@
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/scores' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/scores}">Start Scoring</a>
                 </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scoreDisplay' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/scoreDisplay}">Check Scores</a>
+                </li>
             </ul>
         </div>
     </nav>
