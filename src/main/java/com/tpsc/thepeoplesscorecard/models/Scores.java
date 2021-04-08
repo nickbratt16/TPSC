@@ -62,6 +62,10 @@ public class Scores {
         this.fighter2 = fighter2;
     }
 
+    public long getId() {
+        return this.id;
+    }
+
     public String getFighter1() { return fighter1; }
 
     public void setFighter1(String fighter1) { this.fighter1 = fighter1; }

@@ -19,6 +19,7 @@ public class ScoreDisplay {
 
     @Autowired
     public ScoreDisplay(ScoreRepository scoreRepo) {
+
         this.scoreRepo = scoreRepo;
     }
 
