@@ -72,8 +72,6 @@ public class ScoreController {
         original.setRound2Score2(update.getRound2Score2());
         original.setRound3Score1(update.getRound3Score1());
         original.setRound3Score2(update.getRound3Score2());
-        original.setTotal1(update.getTotal1());
-        original.setTotal2(update.getTotal2());
     }
 
     @GetMapping("/delete/{id}")
