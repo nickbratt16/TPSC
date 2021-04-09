@@ -74,6 +74,6 @@ public class Fight {
 
     @Override
     public String toString() {
-        return this.headliner1 + " vs. " + this.headliner2;
+        return this.headliner1 + " vs. " + this.headliner2 + " on " + this.date + " at " + this.location;
     }
 }
