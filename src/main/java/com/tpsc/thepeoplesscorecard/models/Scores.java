@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Scores {
@@ -48,6 +49,9 @@ public class Scores {
 
     private LocalDateTime created;
     private LocalDateTime modified;
+
+    @ManyToMany
+    private Set<Fight> fights;
 
     public Scores() {
         this.fighter1 = "";
@@ -95,6 +99,14 @@ public class Scores {
 
     public void setRound3Score2(int round3Score2) { this.round3Score2 = round3Score2; }
 
+    public Set<Fight> getFights() {
+        return fights;
+    }
+
+    public void setFights(Set<Fight> fights) {
+        this.fights = fights;
+    }
+
     @Override
     public String toString() {
         return  this.fighter1 + " vs. " + this.fighter2;
@@ -117,5 +129,19 @@ public class Scores {
     @PreUpdate
     public void onUpdate() {
         this.setModified(LocalDateTime.now());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Scores))
+            return false;
+
+        Scores s = (Scores) o;
+        return this.fighter1.equals(s.fighter1) && this.fighter2.equals(s.fighter2);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.fighter1.hashCode();
     }
 }

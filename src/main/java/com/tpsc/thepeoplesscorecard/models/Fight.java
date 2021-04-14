@@ -1,10 +1,8 @@
 package com.tpsc.thepeoplesscorecard.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Fight {
@@ -16,6 +14,9 @@ public class Fight {
     private String headliner2;
     private String location;
     private String date;
+
+    @ManyToMany(mappedBy = "fights")
+    private Set<Scores> scores;
 
     public Fight() { }
 
@@ -65,5 +66,20 @@ public class Fight {
     @Override
     public String toString() {
         return this.headliner1 + " vs. " + this.headliner2 + " on " + this.date + " in " + this.location;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!(o instanceof Fight))
+                return false;
+
+        Fight f = (Fight) o;
+        return this.headliner1.equals(f.headliner1) && this.headliner2.equals(f.headliner2) && this.location.equals(f.location)
+                && this.date.equals(f.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.headliner1.hashCode();
     }
 }

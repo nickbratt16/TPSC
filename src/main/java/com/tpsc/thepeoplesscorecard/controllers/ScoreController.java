@@ -1,6 +1,8 @@
 package com.tpsc.thepeoplesscorecard.controllers;
 
+import com.tpsc.thepeoplesscorecard.data.FightRepository;
 import com.tpsc.thepeoplesscorecard.data.ScoreRepository;
+import com.tpsc.thepeoplesscorecard.models.Fight;
 import com.tpsc.thepeoplesscorecard.models.Scores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -12,22 +14,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/scores")
 public class ScoreController {
 
     private ScoreRepository scoreRepo;
+    private FightRepository fightRepo;
 
     @Autowired
-    public ScoreController(ScoreRepository scoreRepo) {
+    public ScoreController(ScoreRepository scoreRepo, FightRepository fightRepo) {
 
         this.scoreRepo = scoreRepo;
+        this.fightRepo = fightRepo;
     }
 
     @GetMapping
     public String showScores(Model model) {
-
+        List<Fight> fights = (List<Fight>) fightRepo.findAll();
+        model.addAttribute("fights", fights);
         model.addAttribute("scores", new Scores());
         return "score_sheet";
     }
@@ -79,4 +85,15 @@ public class ScoreController {
         this.scoreRepo.deleteById(id);
         return "redirect:/scoreDisplay";
     }
+
+    /* At the moment delete functionality isn't necessary but might be at a later date
+
+    @GetMapping("/{id}/remove-date/{fightId}")
+    public String removeDate(@PathVariable long id, @PathVariable long fightId, Model model) {
+        Scores originalScore = this.scoreRepo.findById(id).get();
+        Fight fight = this.fightRepo.findById(fightId).get();
+        originalScore.getFights().remove(fight);
+        this.scoreRepo.save(originalScore);
+        return "redirect:/scores/view/" + id;
+    }*/
 }

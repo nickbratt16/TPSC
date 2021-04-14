@@ -133,6 +133,21 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="row justify-content-center">
+                    <label for="dates" class="col-4 col-form-label">Select the Fight:</label>
+                </div>
+
+                <div class="row justify-content-center">
+                    <select class="form-control selectpicker col-4" name="fights" id="dates" required>
+                        <option th:each="fight: ${fights}"
+                                th:value="${fight.id}"
+                                th:text="${fight}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+
             <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <input class="btn btn-light btn-outline-dark" type="submit"
