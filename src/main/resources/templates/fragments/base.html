@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <th:block th:fragment="headerFiles">
@@ -22,24 +23,26 @@
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/}">Home</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/user' ? 'active' : ''}">
-                    <a class="nav-link" th:href="@{/user}">Add User</a>
-                </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scores' ? 'active' : ''}">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scores' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
                     <a class="nav-link" th:href="@{/scores}">Start Scoring</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scoreDisplay' ? 'active' : ''}">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/scoreDisplay' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
                     <a class="nav-link" th:href="@{/scoreDisplay}">Check Scores</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/fights/view' ? 'active' : ''}">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/fights/view' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
                     <a class="nav-link" th:href="@{/fights/view}">Past/Future Fights</a>
                 </li>
             </ul>
+            <a th:href="@{/logout}" class="btn btn-light btn-outline-dark" sec:authorize="isAuthenticated()">Logout</a>
         </div>
     </nav>
 

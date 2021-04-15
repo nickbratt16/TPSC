@@ -12,10 +12,10 @@ import java.time.LocalDate;
 public class HomeController {
 
     @GetMapping
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model) { return "index"; }
 
-        model.addAttribute("currentDate", LocalDate.now());
-        model.addAttribute("User");
-        return "index";
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
     }
 }
