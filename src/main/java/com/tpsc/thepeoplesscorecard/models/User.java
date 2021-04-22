@@ -1,82 +1,120 @@
 package com.tpsc.thepeoplesscorecard.models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @NotBlank(message = "First Name is Required")
-    @Size(min = 2, message = "First Name must be 2 or more characters")
-    private String firstName;
-
-    @NotBlank(message = "First Name is Required")
-    @Size(min = 2, message = "First Name must be 2 or more characters")
-    private String lastName;
-
-    @NotBlank(message = "Email is required")
-    @Email(message = "Must be a valid email address")
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @NotNull(message = "Age is required")
-    @Min(value = 16, message = "Minimum age is 16")
-    @Max(value = 110, message = "Maximum age is 110")
-    private int age;
+    @Column(unique = true, nullable = false)
+    private String username;
 
-    private String favFighter;
+    @Column(nullable = false)
+    private String password;
 
-    public User() {
+    private String firstName;
+    private String lastName;
+    private boolean enabled;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
 
-    }
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Collection<Role> roles;
 
-    public User(String firstName, String lastName, String email) {
+    public enum Role { ROLE_ADMIN, ROLE_USER }
+
+    public User() { }
+
+    public User(String email, String username, String password, String firstName, String lastName) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public void setUsername(String username) { this.username = username; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public void setEnabled(boolean enabled) { this.enabled = enabled; }
+
+    public void setAccountNonExpired(boolean accountNonExpired) { this.accountNonExpired = accountNonExpired; }
+
+    public void setAccountNonLocked(boolean accountNonLocked) { this.accountNonLocked = accountNonLocked; }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) { this.credentialsNonExpired = credentialsNonExpired; }
+
+    public void setRoles(Collection<Role> roles) { this.roles = roles; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
+
+    public String getFirstName() { return firstName; }
+
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+
+    public String getLastName() { return lastName; }
+
+    public void setLastName(String lastName) { this.lastName = lastName; }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for (Role role: roles) {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.toString());
+            authorities.add(grantedAuthority);
+        }
+        return authorities;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    @Override
+    public String getPassword() {
+        return this.password;
     }
 
-    public String getLastName() {
-        return lastName;
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public boolean isAccountNonExpired() {
+        return this.accountNonExpired;
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public boolean isAccountNonLocked() {
+        return this.accountNonLocked;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return this.credentialsNonExpired;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getFavFighter() {
-        return favFighter;
-    }
-
-    public void setFavFighter(String favFighter) {
-        this.favFighter = favFighter;
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 }
