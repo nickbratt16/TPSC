@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,6 +29,7 @@ public class User implements UserDetails {
 
     private String firstName;
     private String lastName;
+
     private boolean enabled;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -39,7 +42,16 @@ public class User implements UserDetails {
 
     public enum Role { ROLE_ADMIN, ROLE_USER }
 
-    public User() { }
+    public User() {
+        this.email = "";
+        this.username = "";
+        this.password = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+    }
 
     public User(String email, String username, String password, String firstName, String lastName) {
         this.email = email;
@@ -86,6 +98,14 @@ public class User implements UserDetails {
             authorities.add(grantedAuthority);
         }
         return authorities;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

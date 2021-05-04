@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <nav th:fragment="navigation" class="navbar-expand-lg navbar-light bg-light border border-dark">
+    <nav th:fragment="navigation" class="navbar-expand-lg navbar-light bg-secondary border border-dark">
         <a class="navbar-brand" th:href="@{/}"><img id="logo" th:src="@{/images/TPSC-Logo.png}"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbarContent" aria-controls="navbarContent"
@@ -41,6 +41,13 @@
                     sec:authorize="hasAnyRole('USER', 'ADMIN')">
                     <a class="nav-link" th:href="@{/fights/view}">Past/Future Fights</a>
                 </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/userDisplay' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
+                    <a class="nav-link" th:href="@{/userDisplay}">Check Profile</a>
+                </li>
             </ul>
             <a th:href="@{/logout}" class="btn btn-light btn-outline-dark" sec:authorize="isAuthenticated()">Logout</a>
         </div>
@@ -55,7 +62,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <img id="logo" th:src="@{/images/TPSC-Logo.png}">
+                    <img id="centerLogo" th:src="@{/images/TPSC-Logo.png}">
                 </div>
             </div>
         </div>
@@ -63,7 +70,7 @@
 
     <footer class="footer" th:fragment="footer">
         <div class="container text-center">
-            <span class="text-muted">Copyright Northeastern Illinois University @2021</span>
+            <span class="text-muted">Copyright Northeastern Illinois University @2020</span>
         </div>
     </footer>
 </body>

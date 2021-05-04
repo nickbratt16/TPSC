@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/fights")
 public class FightController {
 
-    private FightRepository fightRepo;
+    private final FightRepository fightRepo;
 
     @Autowired
     public FightController(FightRepository fightRepo) {

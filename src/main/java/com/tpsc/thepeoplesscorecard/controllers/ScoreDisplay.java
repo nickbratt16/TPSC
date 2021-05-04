@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/scoreDisplay")
 public class ScoreDisplay {
 
-    private ScoreRepository scoreRepo;
+    private final ScoreRepository scoreRepo;
 
     @Autowired
     public ScoreDisplay(ScoreRepository scoreRepo) {

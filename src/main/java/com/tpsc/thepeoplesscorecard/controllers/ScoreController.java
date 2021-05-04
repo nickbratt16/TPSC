@@ -20,8 +20,8 @@ import java.util.Set;
 @RequestMapping("/scores")
 public class ScoreController {
 
-    private ScoreRepository scoreRepo;
-    private FightRepository fightRepo;
+    private final ScoreRepository scoreRepo;
+    private final FightRepository fightRepo;
 
     @Autowired
     public ScoreController(ScoreRepository scoreRepo, FightRepository fightRepo) {
@@ -86,8 +86,6 @@ public class ScoreController {
         return "redirect:/scoreDisplay";
     }
 
-    /* At the moment delete functionality isn't necessary but might be at a later date
-
     @GetMapping("/{id}/remove-date/{fightId}")
     public String removeDate(@PathVariable long id, @PathVariable long fightId, Model model) {
         Scores originalScore = this.scoreRepo.findById(id).get();
@@ -95,5 +93,5 @@ public class ScoreController {
         originalScore.getFights().remove(fight);
         this.scoreRepo.save(originalScore);
         return "redirect:/scores/view/" + id;
-    }*/
+    }
 }
