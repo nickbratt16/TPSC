@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Fights</title>
 </head>
-<body>
+<body class="bg-secondary text-light">
 
 <div th:replace="fragments/base :: navigation"></div>
 <div th:replace="fragments/base :: header"></div>
@@ -17,7 +17,7 @@
             <div class="col-2 col-md-4"></div>
             <div class="col-8 col-md-4 card">
                 <div class="card-body">
-                    <h5 class="card-title d-inline" th:text="${fight.toString()}"></h5>
+                    <h5 class="card-title d-inline bg-light text-dark" th:text="${fight.toString()}"></h5>
                 </div>
             </div>
             <div class="col-2 col-md-4"></div>

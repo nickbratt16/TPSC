@@ -16,15 +16,15 @@
 </head>
 
 <body>
-    <nav th:fragment="navigation" class="navbar-expand-lg navbar-light bg-secondary border border-dark">
-        <a class="navbar-brand" th:href="@{/}"><img id="logo" th:src="@{/images/TPSC-Logo.png}"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
+    <nav th:fragment="navigation" class="navbar-expand-lg navbar-dark bg-secondary border border-light">
+        <a class="navbar-brand bg-transparent" th:href="@{/}"><img id="logo" th:src="@{/images/TPSC-Logo.png}"></a>
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse"
                 data-target="#navbarContent" aria-controls="navbarContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarContent">
+        <div class="collapse navbar-collapse text-muted" id="navbarContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/}">Home</a>
@@ -44,10 +44,6 @@
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/register}">Register</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/userDisplay' ? 'active' : ''}"
-                    sec:authorize="hasAnyRole('USER', 'ADMIN')">
-                    <a class="nav-link" th:href="@{/userDisplay}">Check Profile</a>
-                </li>
             </ul>
             <a th:href="@{/logout}" class="btn btn-light btn-outline-dark" sec:authorize="isAuthenticated()">Logout</a>
         </div>
@@ -57,12 +53,12 @@
         <div class="container-fluid">
             <div class="row justify-content-center mt-3 mb-3">
                 <div class="col-12">
-                    <h2 class="text-center">The Peoples Score Card</h2>
+                    <h2 class="text-center text-dark">The Peoples Score Card</h2>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <img id="centerLogo" th:src="@{/images/TPSC-Logo.png}">
+                    <img class="bg-transparent" id="centerLogo" th:src="@{/images/TPSC-Logo.png}">
                 </div>
             </div>
         </div>
